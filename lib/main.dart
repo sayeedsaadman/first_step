@@ -20,11 +20,20 @@ class Myapp extends StatelessWidget {
     return  MaterialApp(
       debugShowCheckedModeBanner:false, //corner debug flash .
       home: Scaffold(
+        backgroundColor: Colors.purpleAccent, //set colour to scaffold backgrnd
         appBar: AppBar(
+          backgroundColor: Colors.amberAccent,// appbar er clr change
+          centerTitle: true, // appbar er text centre er jnno command
           title: Text("UNGABUNGA"),
+          leading: Icon(Icons.add_business,color: Colors.amber,size: 30,), // left side hole leading + size can be added
+          actions: [Icon(Icons.search),], // right hole actions + clr add kra jay
         ),
         body: Center(
-          child: Text("Hello"),
+          child: Text("Hello",style: TextStyle(
+            color: Colors.black,
+            fontSize: 30,
+            fontWeight: FontWeight.bold
+          ),),
         ),
       ),
       title: "Valley",
