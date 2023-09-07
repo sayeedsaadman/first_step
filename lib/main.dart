@@ -18,7 +18,7 @@ class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      debugShowCheckedModeBanner:false, //corner debug flash .
+      debugShowCheckedModeBanner:false, //corner debug flash.
       home: Scaffold(
         backgroundColor: Colors.purpleAccent, //set colour to scaffold backgrnd
         appBar: AppBar(
