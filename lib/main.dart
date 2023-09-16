@@ -1,40 +1,78 @@
-
 import 'package:flutter/material.dart';
 
-void main () {
-  runApp(Myapp());
+void main() {
+  // give me some widget
+  runApp(MyApp());
 }
-class Myapp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.white, //set colour to scaffold backgrnd
-        appBar: AppBar(
-          backgroundColor: Colors.amberAccent,
-          centerTitle: true, // appbar er text centre er jnno command
-          title: Text("Hello"),
-          leading: Icon(Icons.add_business,color: Colors.amber,size: 30,), // left side hole leading + size can be added
-          actions: [Icon(Icons.search),], // right hole actions + clr add kra jay
-        ),
-        body: Center(
-            child: Column( //work with col
-              mainAxisAlignment: MainAxisAlignment.center, // edit with main axis
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text("Hello world"),
-            Row( //work with row
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text("Hello"),
-                Text(" world")
-              ],
-            )
-          ],
-        )),
+    return MaterialApp(
+      debugShowCheckedModeBanner: true,
+      home: HomeScreen(),
+      title: 'Ostad app',
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
       ),
-      title: "Valley",
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        children: [
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+          Text("ululu"),
+        ],
+      )
+            /* GestureDetector( //alternative Inkwell .. and gives shadow
+              onTap: (){
+                print("yes");
+              },
+              onDoubleTap: ()
+              {
+                print("ululu");
+              },
+
+              child: Text("HEllo",style: TextStyle(
+                fontSize: 32
+              ),),
+            ) */ //gesturedetector
+           /* InkWell(
+              onTap: ()
+              {
+                print("ss");
+              },
+              borderRadius: BorderRadius.circular(10),
+              child: Text(
+                "hello",style: TextStyle(
+                fontSize: 22
+              ),
+              ),
+            ) */ //inkwell
+
+
+
     );
   }
 }
