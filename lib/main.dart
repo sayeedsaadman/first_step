@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 
+/// Navigation - one page -> another page
+/// Navigator 1(Simple and Lengthy), 2 (complex)
+/// Routers Package -> Getx, GoRouter, Auto Route
+
+/// TODO : Stack, Queue, Navigator, Navigation
+
 void main() {
-  // give me some widget
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
       home: HomeScreen(),
-      title: 'Ostad app',
     );
   }
 }
 
+/// Route
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,55 +31,123 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
       ),
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        children: [
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-          Text("ululu"),
-        ],
-      )
-            /* GestureDetector( //alternative Inkwell .. and gives shadow
-              onTap: (){
-                print("yes");
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Home',
+              style: TextStyle(fontSize: 24),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                /// Navigation - Route home -> Route settings
+                /// Navigator
+                /// Navigator.typeOfNavigation(currentLocation, Destination);
+                /// Navigation - Push, Pop(Back), replace, replaceAll, removeUntil
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingsScreen(),
+                  ),
+                );
               },
-              onDoubleTap: ()
-              {
-                print("ululu");
+              child: Text('Go to settings'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                /// Navigation - Route home -> Route settings
+                /// Navigator
+                /// Navigator.typeOfNavigation(currentLocation, Destination);
+                /// Navigation - Push, Pop(Back), replace, replaceAll, removeUntil
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OrdersScreen(),
+                  ),
+                );
               },
+              child: Text('Go to Orders'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
-              child: Text("HEllo",style: TextStyle(
-                fontSize: 32
-              ),),
-            ) */ //gesturedetector
-           /* InkWell(
-              onTap: ()
-              {
-                print("ss");
+/// Route
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Settings'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Settings',
+              style: TextStyle(fontSize: 24),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                      (route) => false,
+                );
               },
-              borderRadius: BorderRadius.circular(10),
-              child: Text(
-                "hello",style: TextStyle(
-                fontSize: 22
-              ),
-              ),
-            ) */ //inkwell
+              child: Text('Home'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
 
+/// Route
+class OrdersScreen extends StatelessWidget {
+  const OrdersScreen({super.key});
 
-
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Orders'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Orders',
+              style: TextStyle(fontSize: 24),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingsScreen(),
+                  ),
+                );
+              },
+              child: Text('Go to settings'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Back to home'),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
