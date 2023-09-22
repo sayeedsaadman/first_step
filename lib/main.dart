@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// TODO : Add text field theme
-/// TODO : Dark mode er jonno theme data add korben
-
 void main() {
   runApp(MyApp());
 }
@@ -13,66 +10,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeScreen(),
-      theme: ThemeData(
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.green,
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)
-                ),
-                elevation: 5,
-                textStyle: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.6,
-                    wordSpacing: 0.5
-                )
-            ),
-          ),
-          textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(
-                  textStyle: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600
-                  ),
-                  foregroundColor: Colors.deepOrange
-              )
-          ),
-          appBarTheme: AppBarTheme(
-              backgroundColor: Colors.pink,
-              elevation: 5,
-              shadowColor: Colors.green
-          ),
-          textTheme: TextTheme(
-            bodyMedium: TextStyle(
-                fontSize: 18
-            ),
-            bodySmall: TextStyle(
-                fontSize: 10
-            ),
-            bodyLarge: TextStyle(
-                fontSize: 22
-            ),
-          )
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        appBarTheme: AppBarTheme(
-            backgroundColor: Colors.amberAccent,
-            elevation: 5,
-            shadowColor: Color(0xFF510622)
-        ),
-      ),
-      themeMode: ThemeMode.dark,
+      home: Home(),
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -80,31 +24,74 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Hello world',),
-            Text('Hello world', style: Theme.of(context).textTheme.bodySmall,),
-            Text('Hello world', style: Theme.of(context).textTheme.bodyLarge,),
-            Text('Hello world', style: Theme.of(context).textTheme.headlineMedium,),
-            TextButton(onPressed: () {}, child: Text('Tap here'),),
-            TextButton(onPressed: () {}, child: Text('Tap here'),),
-            TextButton(onPressed: () {}, child: Text('Tap here'),),
-            ElevatedButton(
-              onPressed: () {}, child: Text('Tap here'),),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-              onPressed: () {},
-              child: Text('Tap here'),
-            ),
-          ],
-        ),
+      body: Column(
+        children: [
+          Switch(value: true, onChanged: (bool value) {}),
+          ElevatedButton(
+            onPressed: () {
+              showDialog(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text('Alert'),
+                      content: Text('You are in danger'),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('Cancel')),
+                        TextButton(
+                            onPressed: () {
+                              // ACTION
+                            },
+                            child: Text('Okay')),
+                      ],
+                    );
+                  });
+            },
+            child: Text('Show dialog'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              showAboutDialog(
+                  context: context,
+                  applicationName: "PikaPie",
+                  applicationVersion: '1.0.4',
+                  children: [
+                    Text('This application is good for regular uses!')
+                  ]);
+            },
+            child: Text('show about'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              showModalBottomSheet(
+                  isDismissible: false,
+                  backgroundColor: Colors.grey.shade100,
+                  barrierColor: Colors.black45,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(16),
+                        topRight: Radius.circular(16),
+                      )
+                  ),
+                  context: context, builder: (context) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Text('This is bottom sheet'),
+                      )
+                    ],
+                  ),
+                );
+              });
+            }, child: Text('show bottom sheet'),),
+        ],
       ),
     );
   }
 }
-
-
-
-
